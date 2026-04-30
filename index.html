@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ali Hajbabaie | Intelligent Infrastructure Systems</title>
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --white: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --light: #f5f5f4;
+      --line: #e2e8f0;
+      --red: #991b1b;
+      --red-dark: #7f1d1d;
+      --slate: #020617;
+      --slate-2: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-subtitle {
+      margin-top: 2px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    nav a:hover {
+      color: var(--red-dark);
+    }
+
+    .nav-button,
+    .button-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--red-dark);
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      padding: 13px 24px;
+      background: #b91c1c;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+    }
+
+    .button-primary:hover,
+    .nav-button:hover {
+      background: #7f1d1d;
+      color: white;
+    }
+
+    .button-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+      padding: 13px 24px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(135deg, #020617 0%, #0f172a 55%, #450a0a 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -140px;
+      left: -140px;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: rgba(185, 28, 28, 0.22);
+      filter: blur(80px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -170px;
+      right: -140px;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      background: rgba(29, 78, 216, 0.12);
+      filter: blur(90px);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      padding: 88px 0 104px;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 24px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: 1.03;
+      letter-spacing: -0.055em;
+      font-weight: 750;
+    }
+
+    .hero p {
+      margin: 28px 0 0;
+      max-width: 760px;
+      color: #e2e8f0;
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+      max-width: 780px;
+    }
+
+    .hero-stat {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.1);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1;
+    }
+
+    .hero-stat span {
+      display: block;
+      margin-top: 8px;
+      color: #cbd5e1;
+      font-size: 11px;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .profile-card {
+      width: min(100%, 430px);
+      justify-self: end;
+      border-radius: 32px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.11);
+      padding: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .profile-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      background: #1e293b;
+    }
+
+    .profile-info {
+      margin-top: 20px;
+      border-radius: 24px;
+      background: white;
+      color: var(--ink);
+      padding: 24px;
+    }
+
+    .profile-info h2 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: -0.03em;
+    }
+
+    .profile-info p {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .profile-links a,
+    .light-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .profile-links a:hover,
+    .light-button:hover {
+      background: #e2e8f0;
+    }
+
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .section-pad {
+      padding: 84px 0;
+    }
+
+    .white-section {
+      background: white;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .two-col-wide {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .label {
+      margin: 0;
+      color: var(--red-dark);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    h2.section-title {
+      margin: 14px 0 0;
+      max-width: 780px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 740;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 820px;
+      color: #334155;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .text-block {
+      display: grid;
+      gap: 20px;
+      color: #334155;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .text-block p {
+      margin: 0;
+    }
+
+    .cards-3,
+    .cards-4,
+    .cards-2 {
+      display: grid;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cards-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .cards-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--light);
+      padding: 28px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .card.white {
+      background: white;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .card ul {
+      margin: 16px 0 0;
+      padding-left: 19px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .text-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--red-dark);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    .method-card {
+      margin-top: 48px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: white;
+      padding: 32px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .method-card h3 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .method-card p {
+      margin: 16px 0 0;
+      max-width: 900px;
+      color: #334155;
+      line-height: 1.75;
+    }
+
+    .dark-card {
+      border-radius: 32px;
+      background: #0f172a;
+      color: white;
+      padding: 40px;
+    }
+
+    .dark-card .label {
+      color: #fca5a5;
+    }
+
+    .dark-card h2 {
+      color: white;
+    }
+
+    .dark-card p {
+      color: #cbd5e1;
+      line-height: 1.75;
+    }
+
+    .publication-list {
+      display: grid;
+      gap: 20px;
+    }
+
+    .publication {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: white;
+      padding: 24px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .publication .meta {
+      color: var(--red-dark);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .publication h3 {
+      margin: 10px 0 0;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .publication p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .outline-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid #cbd5e1;
+      color: #1e293b;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .outline-button:hover {
+      background: #f1f5f9;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .impact-card {
+      border-radius: 28px;
+      background: var(--light);
+      padding: 28px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+
+    .impact-card strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .impact-card h3 {
+      margin: 12px 0 0;
+      font-size: 17px;
+    }
+
+    .impact-card p {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .cta {
+      border-radius: 32px;
+      background: #0f172a;
+      color: white;
+      padding: 48px;
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .cta .label {
+      color: #fca5a5;
+    }
+
+    .cta h2 {
+      margin: 14px 0 0;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .cta p {
+      margin: 20px 0 0;
+      max-width: 780px;
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    @media (max-width: 980px) {
+      nav {
+        display: none;
+      }
+
+      .hero-grid,
+      .two-col,
+      .two-col-wide,
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        justify-self: start;
+      }
+
+      .cards-4,
+      .cards-3,
+      .cards-2,
+      .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 32px, 1180px);
+      }
+
+      .hero-grid {
+        padding: 64px 0 76px;
+      }
+
+      .hero-stats,
+      .cards-4,
+      .cards-3,
+      .cards-2,
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-pad {
+        padding: 64px 0;
+      }
+
+      .profile-info,
+      .card,
+      .method-card,
+      .dark-card,
+      .cta {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav-wrap">
+      <a href="#top">
+        <div class="brand-title">Ali Hajbabaie</div>
+        <div class="brand-subtitle">Professor · NC State University</div>
+      </a>
+
+      <nav>
+        <a href="#vision">Vision</a>
+        <a href="#research">Research</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#publications">Publications</a>
+        <a href="#impact">Impact</a>
+        <a class="nav-button" href="mailto:ahajbab@ncsu.edu">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="top" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow-pill">Civil Engineering · AI · Optimization · Infrastructure Systems</div>
+
+          <h1>Advancing intelligent infrastructure systems</h1>
+
+          <p>My work focuses on integrating civil engineering, artificial intelligence, optimization, and automation to develop infrastructure systems that are adaptive, coordinated, and deployable.</p>
+
+          <div class="hero-actions">
+            <a class="button-primary" href="#research">Explore Research</a>
+            <a class="button-secondary" href="#leadership">Leadership &amp; Impact</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="hero-stat"><strong>65+</strong><span>Journal Articles</span></div>
+            <div class="hero-stat"><strong>$10M+</strong><span>Research Funding</span></div>
+            <div class="hero-stat"><strong>IEEE</strong><span>Associate Editor</span></div>
+            <div class="hero-stat"><strong>CAS</strong><span>Group Director</span></div>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <img src="https://ahajbab.wordpress.ncsu.edu/files/2020/12/Hajbabaie_Ali_CEE-e1566941784625-500x500-1.jpg" alt="Ali Hajbabaie" />
+
+          <div class="profile-info">
+            <h2>Ali Hajbabaie, Ph.D.</h2>
+            <p>Professor and Associate Head for Research and Infrastructure</p>
+            <p>North Carolina State University</p>
+
+            <div class="profile-links">
+              <a href="mailto:ahajbab@ncsu.edu">Email</a>
+              <a href="#publications">Publications</a>
+              <a href="https://ahajbab.wordpress.ncsu.edu/projects/">Projects</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about" class="section-pad">
+      <div class="container two-col">
+        <div>
+          <p class="label">About</p>
+          <h2 class="section-title">Background and perspective</h2>
+        </div>
+
+        <div class="text-block">
+          <p>I am a Professor in Civil, Construction, and Environmental Engineering at North Carolina State University, where I also serve as Associate Head for Research and Infrastructure. My work focuses on the design of intelligent, data-driven infrastructure systems that operate effectively under uncertainty.</p>
+          <p>My research background is rooted in operations research and optimization, with a sustained focus on transportation systems as a primary application domain. Over time, this work has expanded to incorporate artificial intelligence, distributed decision-making, and human–automation interaction.</p>
+          <p>I am particularly interested in bridging the gap between methodological development and real-world deployment. This includes working with agencies and industry partners to translate research into practical systems that improve infrastructure performance.</p>
+          <p>In addition to research, I am engaged in academic leadership, focusing on building interdisciplinary initiatives and supporting the development of large-scale research programs that address emerging infrastructure challenges.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="vision" class="section-pad">
+      <div class="container two-col">
+        <div>
+          <p class="label">Research Vision</p>
+          <h2 class="section-title">Toward more coordinated and intelligent infrastructure systems</h2>
+        </div>
+
+        <div class="text-block">
+          <p>Modern infrastructure systems are no longer isolated physical assets. They are interconnected, data-rich, and increasingly shaped by automation, sensing, and real-time decision-making.</p>
+          <p>My work develops scalable frameworks that integrate sensing, prediction, optimization, and control to help infrastructure systems operate safely, efficiently, and resiliently under uncertainty.</p>
+          <p>Transportation systems serve as a flagship testbed, but the underlying ideas extend to broader infrastructure, logistics, and urban systems where coordinated decisions must be made across people, physical assets, and digital intelligence.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="section-pad white-section">
+      <div class="container">
+        <div>
+          <p class="label">Research</p>
+          <h2 class="section-title">Core areas and selected work</h2>
+          <p class="lead">My research integrates optimization, AI, and systems engineering to design coordinated, real-time decision systems for infrastructure. Below are representative areas with selected projects and directions.</p>
+        </div>
+
+        <div class="cards-3">
+          <div class="card">
+            <h3>Connected &amp; Automated Systems</h3>
+            <p>Control and coordination of connected and automated vehicles in intersections, corridors, and freeway systems.</p>
+            <ul>
+              <li>Trajectory optimization and mixed-autonomy control</li>
+              <li>White-phase and mobile controller paradigms</li>
+              <li>Safety and efficiency in CAV environments</li>
+            </ul>
+            <a class="text-link" href="https://ahajbab.wordpress.ncsu.edu/research/cooperative-connected-automated-vehicle-control-in-transportation-facilities/">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <h3>Signal Timing &amp; Network Control</h3>
+            <p>Optimization and real-time control of signalized networks using distributed and scalable methodologies.</p>
+            <ul>
+              <li>Distributed coordinated signal control</li>
+              <li>Joint signal and trajectory optimization</li>
+              <li>Network-level congestion mitigation</li>
+            </ul>
+            <a class="text-link" href="https://ahajbab.wordpress.ncsu.edu/research/signal-timing-optimization/">Learn more →</a>
+          </div>
+
+          <div class="card">
+            <h3>Traffic Metering &amp; Network Regulation</h3>
+            <p>Dynamic control of flows entering urban networks to prevent congestion, gridlock, and system inefficiencies.</p>
+            <ul>
+              <li>Perimeter control and gating strategies</li>
+              <li>Distributed optimization for large-scale networks</li>
+              <li>Real-time traffic regulation under uncertainty</li>
+            </ul>
+            <a class="text-link" href="https://ahajbab.wordpress.ncsu.edu/research/traffic-metering-in-urban-street-network/">Learn more →</a>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <h3>Cross-cutting methodologies</h3>
+          <p>Across these areas, my work develops foundational methods in distributed optimization, model predictive control, simulation-optimization, and AI-integrated decision systems. These approaches enable scalable, real-time solutions for complex infrastructure systems operating under uncertainty.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership" class="section-pad">
+      <div class="container two-col-wide">
+        <div class="dark-card">
+          <p class="label">Leadership</p>
+          <h2 class="section-title">Supporting research growth and collaboration</h2>
+          <p>My leadership work focuses on creating conditions for faculty, students, and collaborators to pursue larger, more integrated, and more impactful research agendas.</p>
+        </div>
+
+        <div class="cards-2" style="margin-top:0;">
+          <div class="card white">
+            <h3>Associate Head for Research and Infrastructure</h3>
+            <p>Strengthening department-wide research capacity, infrastructure planning, and interdisciplinary proposal development.</p>
+          </div>
+
+          <div class="card white">
+            <h3>Director, Computing, AI, and Systems Group</h3>
+            <p>Advancing the integration of AI, optimization, computing, and systems thinking within civil engineering.</p>
+          </div>
+
+          <div class="card white">
+            <h3>Provost Faculty Fellow</h3>
+            <p>Engaging in university-level leadership, interdisciplinary strategy, and academic governance.</p>
+          </div>
+
+          <div class="card white">
+            <h3>BHEF Faculty Innovation Fellow</h3>
+            <p>Building university-industry partnerships that connect research, workforce development, and innovation ecosystems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section-pad">
+      <div class="container">
+        <div>
+          <p class="label">Projects</p>
+          <h2 class="section-title">Selected research and collaborative initiatives</h2>
+          <p class="lead">These projects represent ongoing and completed efforts that translate research into practical systems, tools, and real-world applications.</p>
+        </div>
+
+        <div class="cards-2">
+          <div class="card white">
+            <h3>Network-Level Traffic Control Systems</h3>
+            <p>Development of scalable optimization frameworks for coordinating signal timing, traffic flow, and system-wide operations in urban networks.</p>
+            <p><strong>Focus:</strong> distributed optimization, real-time control, congestion mitigation</p>
+          </div>
+
+          <div class="card white">
+            <h3>Connected and Automated Vehicle Systems</h3>
+            <p>Design and evaluation of coordinated control strategies for mixed-autonomy environments, integrating infrastructure and vehicle-level intelligence.</p>
+            <p><strong>Focus:</strong> trajectory control, safety, human–automation interaction</p>
+          </div>
+
+          <div class="card white">
+            <h3>Urban Traffic Metering and Perimeter Control</h3>
+            <p>Optimization of network entry flows to prevent gridlock and improve throughput in congested urban systems.</p>
+            <p><strong>Focus:</strong> system-level regulation, gating strategies, resilience</p>
+          </div>
+
+          <div class="card white">
+            <h3>Integrated AI and Infrastructure Systems</h3>
+            <p>Development of AI-enabled decision systems that combine learning and optimization for adaptive infrastructure management.</p>
+            <p><strong>Focus:</strong> AI integration, predictive systems, real-time decision-making</p>
+          </div>
+        </div>
+
+        <a class="text-link" href="https://ahajbab.wordpress.ncsu.edu/projects/">View full project portfolio →</a>
+      </div>
+    </section>
+
+    <section id="students" class="section-pad white-section">
+      <div class="container">
+        <div>
+          <p class="label">Students</p>
+          <h2 class="section-title">Mentorship and research training</h2>
+          <p class="lead">My group focuses on training students to work at the intersection of theory and practice, combining rigorous analytical thinking with real-world problem solving in infrastructure systems.</p>
+        </div>
+
+        <div class="cards-3">
+          <div class="card">
+            <h3>Ph.D. Students</h3>
+            <p>Students working on advanced topics in optimization, AI, and infrastructure systems.</p>
+            <ul>
+              <li>Traffic systems and control</li>
+              <li>AI and machine learning</li>
+              <li>Infrastructure optimization</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>M.S. Students</h3>
+            <p>Applied research and project-based training in transportation systems and data-driven decision making.</p>
+          </div>
+
+          <div class="card">
+            <h3>Student Outcomes</h3>
+            <p>Graduates pursue careers in academia, industry, and public agencies, contributing to infrastructure innovation and operations.</p>
+          </div>
+        </div>
+
+        <a class="text-link" href="https://ahajbab.wordpress.ncsu.edu/students/">View full student group →</a>
+      </div>
+    </section>
+
+    <section id="publications" class="section-pad">
+      <div class="container two-col">
+        <div>
+          <p class="label">Publications</p>
+          <h2 class="section-title">Recent and selected publications</h2>
+          <p class="lead">A selection of recent work is listed below. A complete and current publication record is available through Google Scholar.</p>
+
+          <div class="button-row">
+            <a class="nav-button" href="https://scholar.google.com/citations?user=FsmP-asAAAAJ&hl=en&oi=ao">Google Scholar</a>
+            <a class="outline-button" href="https://ahajbab.wordpress.ncsu.edu/publication/">Full Publication List</a>
+          </div>
+        </div>
+
+        <div class="publication-list">
+          <article class="publication">
+            <div class="meta">2025 · Transportation Research Record</div>
+            <h3>Optimal Connected Automated Vehicle Control in Freeway Merge Segments through Distributed Coordination</h3>
+            <p>Distributed cooperative optimization for CAV trajectory and lane-changing decisions in freeway merge segments.</p>
+          </article>
+
+          <article class="publication">
+            <div class="meta">2024 · Computer-Aided Civil and Infrastructure Engineering</div>
+            <h3>Integrated Corridor Management by Cooperative Traffic Signal and Ramp Metering Control</h3>
+            <p>A real-time optimization framework integrating signal timing and ramp metering for corridor operations.</p>
+          </article>
+
+          <article class="publication">
+            <div class="meta">2024 · IEEE Transactions on Intelligent Transportation Systems</div>
+            <h3>Joint Signal Timing and Trajectory Control With Uncertainty in Connected Automated Vehicle Dynamics</h3>
+            <p>Chance-constrained trajectory and signal control accounting for uncertainty in CAV dynamics.</p>
+          </article>
+
+          <article class="publication">
+            <div class="meta">2024 · Transportation Research Record</div>
+            <h3>Effects of Connectivity and Automation on Saturation Headway and Capacity at Signalized Intersections</h3>
+            <p>Simulation-based analysis of how connected and automated vehicles may affect signalized intersection capacity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="section-pad white-section">
+      <div class="container two-col-wide">
+        <div>
+          <p class="label">Impact</p>
+          <h2 class="section-title">Research grounded in both theory and practice</h2>
+        </div>
+
+        <div class="impact-grid">
+          <div class="impact-card">
+            <strong>65+</strong>
+            <h3>Peer-reviewed journal articles</h3>
+            <p>Published across transportation, intelligent systems, optimization, and infrastructure venues.</p>
+          </div>
+
+          <div class="impact-card">
+            <strong>$10M+</strong>
+            <h3>Sponsored research portfolio</h3>
+            <p>Supported by federal, state, and industry sponsors.</p>
+          </div>
+
+          <div class="impact-card">
+            <strong>IEEE</strong>
+            <h3>Associate Editor</h3>
+            <p>Editorial leadership in intelligent transportation systems.</p>
+          </div>
+
+          <div class="impact-card">
+            <strong>Center</strong>
+            <h3>Scale research leadership</h3>
+            <p>Experience building interdisciplinary teams and large proposal efforts.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container cta">
+        <div class="cta-grid">
+          <div>
+            <p class="label">Collaboration</p>
+            <h2>Collaboration in intelligent infrastructure research</h2>
+            <p>I welcome conversations with academic collaborators, agencies, industry partners, and prospective graduate students interested in AI-enabled infrastructure, automation, optimization, and real-time control.</p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="button-primary" href="mailto:ahajbab@ncsu.edu">Contact Me</a>
+            <a class="button-secondary" href="https://ahajbab.wordpress.ncsu.edu/publication/">View Publications</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
