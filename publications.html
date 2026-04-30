@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications | Ali Hajbabaie</title>
+  <style>
+    :root {
+      --bg: #fafaf9;
+      --white: #ffffff;
+      --ink: #0f172a;
+      --muted: #475569;
+      --light: #f5f5f4;
+      --line: #e2e8f0;
+      --red: #991b1b;
+      --red-dark: #7f1d1d;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+    .brand-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+    .brand-subtitle { margin-top: 2px; font-size: 12px; color: #64748b; }
+    nav { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 600; color: #334155; }
+    nav a:hover { color: var(--red-dark); }
+    .nav-button {
+      border-radius: 999px;
+      background: var(--red-dark);
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      color: white;
+      background: linear-gradient(135deg, #020617 0%, #0f172a 55%, #450a0a 100%);
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -140px;
+      left: -140px;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      background: rgba(185, 28, 28, 0.22);
+      filter: blur(80px);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -170px;
+      right: -140px;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      background: rgba(29, 78, 216, 0.12);
+      filter: blur(90px);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 88px 0 96px;
+      max-width: 940px;
+    }
+    .eyebrow-pill {
+      display: inline-flex;
+      width: fit-content;
+      margin-bottom: 24px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 6vw, 74px);
+      line-height: 1.04;
+      letter-spacing: -0.055em;
+      font-weight: 750;
+    }
+    .hero p {
+      margin: 28px 0 0;
+      max-width: 850px;
+      color: #e2e8f0;
+      font-size: 20px;
+      line-height: 1.65;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .button-primary, .button-secondary, .outline-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 13px 22px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .button-primary { background: #b91c1c; color: white; }
+    .button-primary:hover { background: #7f1d1d; }
+    .button-secondary { border: 1px solid rgba(255,255,255,0.35); color: white; }
+    .button-secondary:hover { background: rgba(255,255,255,0.1); }
+    .outline-button { border: 1px solid #cbd5e1; color: #1e293b; }
+    .outline-button:hover { background: #f1f5f9; }
+
+    .section-pad { padding: 84px 0; }
+    .white-section { background: white; }
+    .two-col { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 48px; align-items: start; }
+    .label {
+      margin: 0;
+      color: var(--red-dark);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+    h2.section-title {
+      margin: 14px 0 0;
+      max-width: 780px;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      font-weight: 740;
+    }
+    .lead {
+      margin: 18px 0 0;
+      max-width: 880px;
+      color: #334155;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .summary-card {
+      border-radius: 28px;
+      background: white;
+      border: 1px solid var(--line);
+      padding: 26px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+    .summary-card strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: 34px;
+      line-height: 1;
+    }
+    .summary-card span {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .cards-2, .cards-3 {
+      display: grid;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: var(--light);
+      padding: 28px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+    .card.white { background: white; }
+    .card.dark { background: #0f172a; color: white; border-color: #0f172a; }
+    .card h3 { margin: 0; font-size: 22px; line-height: 1.25; letter-spacing: -0.02em; }
+    .card p { margin: 14px 0 0; color: var(--muted); line-height: 1.7; }
+    .card.dark p { color: #cbd5e1; }
+
+    .pub-group {
+      margin-top: 52px;
+    }
+    .pub-group:first-of-type { margin-top: 40px; }
+    .pub-group h3 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.035em;
+    }
+    .pub-list {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .publication {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: white;
+      padding: 24px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+    .publication .meta {
+      color: var(--red-dark);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+    }
+    .publication h4 {
+      margin: 10px 0 0;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .publication p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: #fee2e2;
+      color: var(--red-dark);
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .tag.gray {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .media-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .media-item {
+      display: grid;
+      grid-template-columns: 0.28fr 1fr;
+      gap: 20px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: white;
+      padding: 22px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+    .media-source {
+      color: var(--red-dark);
+      font-weight: 850;
+      font-size: 14px;
+    }
+    .media-item h4 {
+      margin: 0;
+      font-size: 19px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+    .media-item p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .note-box {
+      margin-top: 44px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: white;
+      padding: 32px;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.04);
+    }
+    .note-box h3 { margin: 0; font-size: 26px; letter-spacing: -0.03em; }
+    .note-box p { margin: 16px 0 0; color: #334155; line-height: 1.75; }
+
+    .cta {
+      border-radius: 32px;
+      background: #0f172a;
+      color: white;
+      padding: 48px;
+    }
+    .cta-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+    .cta .label { color: #fca5a5; }
+    .cta h2 { margin: 14px 0 0; font-size: clamp(32px, 4vw, 48px); line-height: 1.1; letter-spacing: -0.04em; }
+    .cta p { margin: 20px 0 0; max-width: 780px; color: #cbd5e1; font-size: 18px; line-height: 1.75; }
+    .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: flex-end; }
+
+    @media (max-width: 980px) {
+      nav { display: none; }
+      .two-col, .cta-grid { grid-template-columns: 1fr; }
+      .cards-3, .cards-2, .summary-grid { grid-template-columns: repeat(2, 1fr); }
+      .media-item { grid-template-columns: 1fr; }
+      .cta-actions { justify-content: flex-start; }
+    }
+    @media (max-width: 640px) {
+      .container { width: min(100% - 32px, 1180px); }
+      .hero-inner { padding: 64px 0 76px; }
+      .cards-3, .cards-2, .summary-grid { grid-template-columns: 1fr; }
+      .section-pad { padding: 64px 0; }
+      .card, .publication, .media-item, .note-box, .cta { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-wrap">
+      <a href="index.html">
+        <div class="brand-title">Ali Hajbabaie</div>
+        <div class="brand-subtitle">Professor · NC State University</div>
+      </a>
+      <nav>
+        <a href="index.html#research">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="control-architectures.html">Control Architectures</a>
+        <a href="network-modeling.html">Network Modeling</a>
+        <a href="connected-automated.html">CAV Systems</a>
+        <a class="nav-button" href="mailto:ahajbab@ncsu.edu">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="eyebrow-pill">Publications</div>
+        <h1>Selected publications and public engagement</h1>
+        <p>This page highlights selected publications and outreach activities that reflect the main directions of my research program. A complete and current publication record is available through Google Scholar.</p>
+        <div class="hero-actions">
+          <a class="button-primary" href="https://scholar.google.com/citations?user=FsmP-asAAAAJ&hl=en&oi=ao">Google Scholar</a>
+          <a class="button-secondary" href="#selected">Selected Publications</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad white-section">
+      <div class="container two-col">
+        <div>
+          <p class="label">Publication Record</p>
+          <h2 class="section-title">A curated view of scholarly work</h2>
+        </div>
+        <div>
+          <p class="lead">Rather than reproduce a full CV-style publication list, this page organizes selected articles by the research themes of the website. The full record includes journal articles, conference papers, invited talks, technical reports, and public-facing media coverage.</p>
+          <div class="summary-grid">
+            <div class="summary-card"><strong>65+</strong><span>peer-reviewed journal articles</span></div>
+            <div class="summary-card"><strong>3</strong><span>main research themes represented below</span></div>
+            <div class="summary-card"><strong>100+</strong><span>conference presentations and talks</span></div>
+            <div class="summary-card"><strong>150+</strong><span>media mentions and public-facing stories</span></div>
+          </div>
+          <div class="button-row">
+            <a class="nav-button" href="https://scholar.google.com/citations?user=FsmP-asAAAAJ&hl=en&oi=ao">View Google Scholar</a>
+            <a class="outline-button" href="index.html#publications">Back to Homepage Publications</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="selected">
+      <div class="container">
+        <p class="label">Selected Journal Articles</p>
+        <h2 class="section-title">Representative publications by research theme</h2>
+        <p class="lead">The papers below are selected to show the intellectual structure of the research program, rather than to serve as a complete list.</p>
+
+        <div class="pub-group">
+          <h3>Control architectures for infrastructure systems</h3>
+          <div class="pub-list">
+            <article class="publication">
+              <div class="meta">2025 · Computer-Aided Civil and Infrastructure Engineering</div>
+              <h4>Real-time Network-level Traffic Signal and Trajectory Optimization with Connected Automated and Human-driven Vehicles</h4>
+              <p>R. Niroumand, F. Kafashan, L. Hajibabai, and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Control Architecture</span><span class="tag gray">Mixed Autonomy</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2024 · Computer-Aided Civil and Infrastructure Engineering</div>
+              <h4>Integrated Corridor Management by Cooperative Traffic Signal and Ramp Metering Control</h4>
+              <p>A. Farabi, R. Mohebifard, R. Niroumand, A. Hajbabaie, M. Hadi, and L. Elefteriadou.</p>
+              <div class="tag-row"><span class="tag">Integrated Control</span><span class="tag gray">Corridor Operations</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2022 · IEEE Transactions on Intelligent Transportation Systems</div>
+              <h4>A Distributed Gradient Approach for Cell Transmission Model-based System Optimal Dynamic Traffic Assignment</h4>
+              <p>M. Mehrabipour and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Distributed Optimization</span><span class="tag gray">Dynamic Traffic Assignment</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2021 · IEEE Transactions on Intelligent Transportation Systems</div>
+              <h4>An Enhanced Cell Transmission Model for Multi-class Signal Control</h4>
+              <p>S. Islam and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Signal Control</span><span class="tag gray">Network Modeling</span></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="pub-group">
+          <h3>Network modeling and traffic operations</h3>
+          <div class="pub-list">
+            <article class="publication">
+              <div class="meta">2025 · Transportation Research Record</div>
+              <h4>Distributed Methodology for a Cell Transmission-based System Optimal Dynamic Traffic Assignment</h4>
+              <p>M. Mehrabipour and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Network Modeling</span><span class="tag gray">SODTA</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2025 · Computer-Aided Civil and Infrastructure Engineering</div>
+              <h4>A Relaxation-Based Column Generation for Volunteer-Driven Delivery Assignments and Route Planning</h4>
+              <p>A. Atik, L. Li, M. Romero, L. Hajibabai, and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Logistics</span><span class="tag gray">Optimization</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2024 · Computer-Aided Civil and Infrastructure Engineering</div>
+              <h4>An Integrated Strategy for Equitable COVID-19 Vaccine Allocation</h4>
+              <p>K. Li, A. Atik, D. Zheng, L. Hajibabai, and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Resource Allocation</span><span class="tag gray">Public Health Logistics</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2022 · Transportation Science</div>
+              <h4>Using COVID-19 Data on Vaccine Shipments and Wastage to Inform Modeling and Decision-making</h4>
+              <p>L. Hajibabai, A. Hajbabaie, J. Swann, and D. Vergano.</p>
+              <div class="tag-row"><span class="tag">Data-driven Modeling</span><span class="tag gray">Decision Support</span></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="pub-group">
+          <h3>Connected and automated systems</h3>
+          <div class="pub-list">
+            <article class="publication">
+              <div class="meta">2025 · Transportation Research Record</div>
+              <h4>Distributed Cooperative Trajectory and Lane-changing Optimization of Connected Automated Vehicles in Freeway Merge Segments</h4>
+              <p>F. Kafashan and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">CAV Control</span><span class="tag gray">Freeway Merge</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2024 · IEEE Transactions on Intelligent Transportation Systems</div>
+              <h4>Joint Signal Timing and Trajectory Control with Uncertainty in Connected Automated Vehicle Dynamics</h4>
+              <p>S. Islam and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Uncertainty</span><span class="tag gray">Trajectory Control</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2024 · Computer-Aided Civil and Infrastructure Engineering</div>
+              <h4>Incorporating CAVs in Signalized Intersections with Human-Driven Vehicles and Pedestrians Using White Phase</h4>
+              <p>R. Niroumand, L. Hajibabai, and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">White Phase</span><span class="tag gray">Mixed Traffic</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2023 · IEEE Transactions on Intelligent Transportation Systems</div>
+              <h4>White Phase Intersection Control through Distributed Coordination: A Mobile Controller Paradigm in a Mixed Traffic Stream</h4>
+              <p>R. Niroumand, L. Hajibabai, and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Mobile Controllers</span><span class="tag gray">Collaborative Control</span></div>
+            </article>
+
+            <article class="publication">
+              <div class="meta">2021 · Transportation Research Part C</div>
+              <h4>Connected Automated Vehicle Control in Single Lane Roundabouts</h4>
+              <p>R. Mohebifard and A. Hajbabaie.</p>
+              <div class="tag-row"><span class="tag">Roundabouts</span><span class="tag gray">Automated Vehicles</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad white-section">
+      <div class="container">
+        <p class="label">Invited Talks and Public Engagement</p>
+        <h2 class="section-title">Selected talks and media coverage</h2>
+        <p class="lead">Selected examples of invited talks and public-facing coverage are included to show the broader communication and visibility of this work.</p>
+
+        <div class="cards-3">
+          <div class="card">
+            <h3>Evolving Traffic Control Systems</h3>
+            <p>Invited talk at George Mason University on how connected and automated vehicles enable the shift from traditional to coordinated, cooperative, and collaborative control.</p>
+            <div class="tag-row"><span class="tag">2026</span><span class="tag gray">Invited Talk</span></div>
+          </div>
+          <div class="card">
+            <h3>Effects of Connectivity and Automation</h3>
+            <p>Invited talk at the Illinois Traffic Engineering and Safety Conference on traffic operations and control in connected and automated environments.</p>
+            <div class="tag-row"><span class="tag">2025</span><span class="tag gray">Invited Talk</span></div>
+          </div>
+          <div class="card">
+            <h3>The Role of Automated Vehicles</h3>
+            <p>Invited talk at the University of Michigan on next-generation traffic management and automated vehicles.</p>
+            <div class="tag-row"><span class="tag">2024</span><span class="tag gray">Invited Talk</span></div>
+          </div>
+        </div>
+
+        <div class="media-list">
+          <a class="media-item" href="https://www.popsci.com/technology/fourth-traffic-light-self-driving-cars/">
+            <div class="media-source">Popular Science</div>
+            <div>
+              <h4>Researchers propose fourth traffic signal light for hypothetical self-driving car future</h4>
+              <p>Coverage of white-phase traffic signal concepts for future connected and automated vehicle environments.</p>
+            </div>
+          </a>
+          <a class="media-item" href="https://www.popularmechanics.com/technology/infrastructure/a42804174/fourth-color-traffic-light-white/">
+            <div class="media-source">Popular Mechanics</div>
+            <div>
+              <h4>A Study Proves Stoplights Need a Fourth Color: White</h4>
+              <p>Public-facing discussion of research on adding a white phase to traffic signals.</p>
+            </div>
+          </a>
+          <a class="media-item" href="https://www.bbc.com/future/article/20230220-the-white-traffic-light-that-could-help-driverless-cars">
+            <div class="media-source">BBC / Science Focus</div>
+            <div>
+              <h4>We need a fourth ‘white’ traffic light to ease road congestion, science says</h4>
+              <p>International coverage of white-phase concepts and their potential implications for congestion.</p>
+            </div>
+          </a>
+          <a class="media-item" href="https://www.sciencedaily.com/releases/2022/04/220401122136.htm">
+            <div class="media-source">ScienceDaily</div>
+            <div>
+              <h4>Researchers roll out data on COVID vaccine distribution and waste</h4>
+              <p>Coverage of vaccine distribution and wastage research using COVID-19 shipment data.</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="note-box">
+          <h3>Complete record</h3>
+          <p>This page is intentionally selective. The complete publication record, including journal articles, conference proceedings, presentations, invited talks, reports, and media coverage, is available through Google Scholar and my CV.</p>
+          <div class="button-row">
+            <a class="nav-button" href="https://scholar.google.com/citations?user=FsmP-asAAAAJ&hl=en&oi=ao">Google Scholar</a>
+            <a class="outline-button" href="index.html">Return to Homepage</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad">
+      <div class="container cta">
+        <div class="cta-grid">
+          <div>
+            <p class="label">Research Connections</p>
+            <h2>Publications connected to research themes</h2>
+            <p>These selected publications connect to the three research areas highlighted across this site: control architectures, network modeling and traffic operations, and connected automated systems.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="button-primary" href="control-architectures.html">Control Architectures</a>
+            <a class="button-secondary" href="network-modeling.html">Network Modeling</a>
+            <a class="button-secondary" href="connected-automated.html">CAV Systems</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
